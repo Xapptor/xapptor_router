@@ -1,4 +1,4 @@
-# xapptor_routing
+# xapptor_router
 
 A new Flutter package project.
 
