@@ -59,8 +59,6 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
         if (_selected_app_screen != null) {
           uri = Uri.parse(_selected_app_screen!.name);
 
-          print(uri);
-
           if (uri.pathSegments.length > 1) {
             int path_segments_index = int.tryParse(uri.pathSegments.last
                     .substring(uri.pathSegments.last.length - 1)) ??
@@ -121,11 +119,7 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
   }
 
   _handle_app_screen_opening(int index) {
-    print("appScreens.lenght: " + app_screens.length.toString());
-    print("appScreens index: $index");
-
     _selected_app_screen = app_screens[index];
-
     notifyListeners();
   }
 }

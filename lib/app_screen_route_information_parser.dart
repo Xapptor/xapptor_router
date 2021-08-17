@@ -20,8 +20,6 @@ class AppScreenRouteInformationParser
     if (uri.pathSegments.length >= 1) {
       var name = uri.path.substring(1, uri.path.length);
 
-      print("name placed: " + name);
-
       current_app_path = uri.toString();
 
       AppScreen app_screen = app_screens.singleWhere(
@@ -31,8 +29,6 @@ class AppScreenRouteInformationParser
           child: Container(),
         );
       });
-
-      print("appScreen.name: " + app_screen.name);
 
       if (app_screen.name == "") {
         return AppScreenRoutePath.unknown();
