@@ -64,6 +64,7 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
                     .substring(uri.pathSegments.last.length - 1)) ??
                 -1;
 
+            print("path: ${uri.path}");
             print("path_segments_index: $path_segments_index");
 
             String new_path = "";
