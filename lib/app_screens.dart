@@ -26,3 +26,7 @@ open_screen(String screen_name) {
       app_screens.indexWhere((app_screen) => app_screen.name == screen_name);
   handle_app_screen_opening(screen_index);
 }
+
+open_login() => open_screen("login");
+open_register() => open_screen("register");
+open_forgot_password() => open_screen("forgot_password");
