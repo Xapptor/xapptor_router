@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'app_screen.dart';
 import 'initial_values_routing.dart';
 
@@ -22,6 +23,8 @@ remove_screen(String app_screen_name) {
 }
 
 open_screen(String screen_name) {
+  FirebaseAnalytics().setCurrentScreen(screenName: screen_name);
+
   int screen_index =
       app_screens.indexWhere((app_screen) => app_screen.name == screen_name);
   handle_app_screen_opening(screen_index);

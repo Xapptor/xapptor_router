@@ -17,7 +17,7 @@ class App extends StatelessWidget {
     AppScreenRouteInformationParser _route_information_parser =
         AppScreenRouteInformationParser();
 
-    final app = MaterialApp.router(
+    MaterialApp material_app = MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: app_name,
       theme: theme,
@@ -25,7 +25,7 @@ class App extends StatelessWidget {
       routeInformationParser: _route_information_parser,
     );
 
-    print("Initial route = ${app.initialRoute}");
-    return app;
+    print("Initial route = ${material_app.initialRoute}");
+    return material_app;
   }
 }
