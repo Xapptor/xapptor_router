@@ -64,6 +64,9 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
                     .substring(uri.pathSegments.last.length - 1)) ??
                 -1;
 
+            current_app_path = uri.toString();
+            //print("current_app_path $current_app_path");
+
             print("path: ${uri.path}");
             print("path_segments_index: $path_segments_index");
 
@@ -112,6 +115,9 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
           (current_app_screen) => current_app_screen.name == path.name);
 
       _selected_app_screen = app_screen;
+
+      current_app_path = _selected_app_screen!.name;
+      print("current_app_path $current_app_path");
     } else {
       _selected_app_screen = null;
     }

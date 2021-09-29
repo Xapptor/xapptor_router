@@ -21,6 +21,7 @@ class AppScreenRouteInformationParser
       var name = uri.path.substring(1, uri.path.length);
 
       current_app_path = uri.toString();
+      //print("current_app_path $current_app_path");
 
       AppScreen app_screen = app_screens.singleWhere(
           (current_app_screen) => current_app_screen.name == name, orElse: () {
