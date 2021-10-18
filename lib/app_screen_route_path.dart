@@ -1,3 +1,5 @@
+// AppScreenRoutePath model.
+
 class AppScreenRoutePath {
   final String? name;
   final bool is_unknown;

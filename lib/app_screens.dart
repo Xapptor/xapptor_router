@@ -2,7 +2,11 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'app_screen.dart';
 import 'initial_values_routing.dart';
 
+// App Screens variable.
+
 List<AppScreen> app_screens = [];
+
+// Add new app screen.
 
 add_new_app_screen(AppScreen new_screen) {
   app_screens.add(new_screen);
@@ -18,9 +22,13 @@ add_new_app_screen(AppScreen new_screen) {
   }
 }
 
+// Remove app screen.
+
 remove_screen(String app_screen_name) {
   app_screens.removeWhere((app_screen) => app_screen.name == app_screen_name);
 }
+
+// Open app screen.
 
 open_screen(String screen_name) {
   FirebaseAnalytics().setCurrentScreen(screenName: screen_name);

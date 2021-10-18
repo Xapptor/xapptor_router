@@ -4,6 +4,8 @@ import 'app_screen_route_path.dart';
 import 'app_screens.dart';
 import 'initial_values_routing.dart';
 
+// Delegate and set new routes.
+
 class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<AppScreenRoutePath> {
   final GlobalKey<NavigatorState> navigatorKey;

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'app_screen_route_information_parser.dart';
 import 'app_screen_router_delegate.dart';
 
+// App widget.
+
 class App extends StatelessWidget {
   const App({
     required this.app_name,

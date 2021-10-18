@@ -4,6 +4,8 @@ import 'app_screen_route_path.dart';
 import 'app_screens.dart';
 import 'initial_values_routing.dart';
 
+// Handle URLs paths changes.
+
 class AppScreenRouteInformationParser
     extends RouteInformationParser<AppScreenRoutePath> {
   @override
