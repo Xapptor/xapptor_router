@@ -52,6 +52,9 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
             child: _selected_app_screen ?? Container(),
           )
       ],
+
+      // When the back screen is called.
+
       onPopPage: (route, result) {
         if (!route.didPop(result)) {
           return false;
@@ -103,6 +106,8 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
       },
     );
   }
+
+  // Setting new route path.
 
   @override
   Future<void> setNewRoutePath(AppScreenRoutePath path) async {
