@@ -22,9 +22,6 @@ class AppScreenRouteInformationParser
     if (uri.pathSegments.length >= 1) {
       var name = uri.path.substring(1, uri.path.length);
 
-      current_app_path = uri.toString();
-      //print("current_app_path $current_app_path");
-
       AppScreen app_screen = app_screens.singleWhere(
           (current_app_screen) => current_app_screen.name == name, orElse: () {
         return AppScreen(
@@ -32,6 +29,8 @@ class AppScreenRouteInformationParser
           child: Container(),
         );
       });
+
+      app_screen.app_path = uri.toString();
 
       if (app_screen.name == "") {
         return AppScreenRoutePath.unknown();
@@ -57,4 +56,28 @@ class AppScreenRouteInformationParser
     }
     return null;
   }
+}
+
+show_payment_result_alert_dialog(
+  bool payment_success,
+  BuildContext context,
+) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(
+          payment_success ? "Payment successful" : "Payment failed",
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text("Accept"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      );
+    },
+  );
 }
