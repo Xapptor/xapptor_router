@@ -102,7 +102,7 @@ start_screens_config() {
         App(
             app_name: "MyAppName",
             theme: ThemeData(
-                primarySwatch: material_color_abeinstitute(),
+                primarySwatch: your_material_color,
                 fontFamily: 'VarelaRound',
                 textButtonTheme: TextButtonThemeData(
                     style: TextButton.styleFrom(
@@ -123,4 +123,7 @@ start_screens_config() {
 open_screen("home/courses");
 ```
 
-                
+### **4 - Check Abeinstitute Repo for more examples**
+[Abeinstitute Repo](https://github.com/Xapptor/abeinstitute)
+
+[Abeinstitute](https://www.abeinstitute.com)
