@@ -21,7 +21,7 @@ class AppScreen extends StatefulWidget {
 
 class _AppScreenState extends State<AppScreen> {
   check_app_path() {
-    print("check_app_path " + widget.app_path);
+    //print("check_app_path " + widget.app_path);
 
     if (widget.app_path.contains("payment_success")) {
       bool is_success = widget.app_path.contains("true");
