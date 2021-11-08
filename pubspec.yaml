@@ -1,6 +1,6 @@
 name: xapptor_router
-description: A new Flutter package project.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+description: Router Module for Web and Mobile Navigation.
+repository: https://github.com/Xapptor/xapptor_router
 version: 0.0.1
 
 environment:

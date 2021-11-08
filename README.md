@@ -7,16 +7,13 @@
 ##### Add it to your package's pubspec.yaml file
 ```yml
 dependencies:
-    xapptor_router: 
-        git: 
-        url: git://github.com/Xapptor/xapptor_router.git 
-        ref: main
+    xapptor_router: ^0.0.1
 ```
 
 ### **2 - Install it**
 ##### Install packages from the command line
 ```sh
-flutter packages get
+flutter pub get
 ```
 
 ### **3 - Learn it like a charm**
