@@ -1,4 +1,5 @@
 # **Xapptor Router**
+[![pub package](https://img.shields.io/pub/v/xapptor_router?color=blue)](https://pub.dartlang.org/packages/xapptor_router)
 ### Router Module for Web and Mobile Navigation.
 
 ## **Let's get started**
@@ -7,7 +8,7 @@
 ##### Add it to your package's pubspec.yaml file
 ```yml
 dependencies:
-    xapptor_router: ^0.0.1
+    xapptor_router: ^0.0.2
 ```
 
 ### **2 - Install it**

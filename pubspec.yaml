@@ -1,7 +1,7 @@
 name: xapptor_router
 description: Router Module for Web and Mobile Navigation.
 repository: https://github.com/Xapptor/xapptor_router
-version: 0.0.1
+version: 0.0.2
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
   firebase_analytics: ^8.3.2
 
 dev_dependencies:
