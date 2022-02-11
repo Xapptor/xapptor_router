@@ -3,6 +3,7 @@ import 'app_screen.dart';
 import 'app_screen_route_path.dart';
 import 'app_screens.dart';
 import 'initial_values_routing.dart';
+import 'save_user_session.dart';
 
 // Delegate and set new routes.
 
@@ -87,6 +88,8 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
 
             AppScreen new_screen = app_screens
                 .singleWhere((app_screen) => app_screen.name == new_path);
+
+            save_user_session(new_screen.name);
 
             _selected_app_screen = new_screen;
           } else {
