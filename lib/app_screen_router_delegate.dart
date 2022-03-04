@@ -72,7 +72,7 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
 
             String new_path = "";
 
-            if (name_contains_number) {
+            if (name_contains_number && uri.pathSegments.length <= 2) {
               remove_screen(_selected_app_screen!.name);
               _selected_app_screen = null;
             } else {
