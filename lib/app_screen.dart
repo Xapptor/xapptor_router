@@ -1,19 +1,25 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
-// AppScreen model.
+// AppScreen class.
 
 class AppScreen extends StatefulWidget {
   AppScreen({
     required this.name,
     required this.child,
-    this.app_path = "",
+    this.path = "",
   });
 
-  final String name;
-  final Widget child;
-  String app_path;
+  String name;
+  Widget child;
+  String path;
+
+  AppScreen clone() {
+    return AppScreen(
+      name: this.name,
+      child: this.child,
+    );
+  }
 
   @override
   _AppScreenState createState() => _AppScreenState();
@@ -23,8 +29,8 @@ class _AppScreenState extends State<AppScreen> {
   check_app_path() {
     //print("check_app_path " + widget.app_path);
 
-    if (widget.app_path.contains("payment_success")) {
-      bool is_success = widget.app_path.contains("true");
+    if (widget.path.contains("payment_success")) {
+      bool is_success = widget.path.contains("true");
       String success_message =
           is_success ? "Payment Successful" : "Payment Failed";
 

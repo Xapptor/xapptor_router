@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:xapptor_router/remove_last_path_segment.dart';
 import 'app_screen.dart';
 import 'app_screen_route_path.dart';
 import 'app_screens.dart';
-import 'initial_values_routing.dart';
 
 // Handle URLs paths changes.
 
@@ -17,25 +17,32 @@ class AppScreenRouteInformationParser
       return AppScreenRoutePath.home();
     }
 
-    print("Complete URL: $uri");
-
     if (uri.pathSegments.length >= 1) {
-      var name = uri.path.substring(1, uri.path.length);
+      var screen_name = uri.path.substring(1);
 
-      AppScreen app_screen = app_screens.singleWhere(
-          (current_app_screen) => current_app_screen.name == name, orElse: () {
-        return AppScreen(
-          name: "",
-          child: Container(),
-        );
-      });
+      AppScreen app_screen = search_screen(screen_name);
 
-      app_screen.app_path = uri.toString();
+      app_screen.path = uri.toString();
 
       if (app_screen.name == "") {
-        return AppScreenRoutePath.unknown();
+        // Second search
+
+        screen_name = remove_last_path_segment(uri).substring(1);
+        app_screen = search_screen(screen_name);
+
+        if (app_screen.name == "") {
+          return AppScreenRoutePath.unknown();
+        } else {
+          AppScreen new_app_screen = app_screen.clone();
+
+          new_app_screen.name = uri.path.substring(1);
+          screen_name = new_app_screen.name;
+          add_new_app_screen(new_app_screen);
+
+          return AppScreenRoutePath.details(screen_name);
+        }
       } else {
-        return AppScreenRoutePath.details(name);
+        return AppScreenRoutePath.details(screen_name);
       }
     }
 

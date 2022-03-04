@@ -3,6 +3,7 @@ import 'app_screen.dart';
 import 'app_screen_route_path.dart';
 import 'app_screens.dart';
 import 'initial_values_routing.dart';
+import 'remove_last_path_segment.dart';
 import 'save_user_session.dart';
 
 // Delegate and set new routes.
@@ -66,32 +67,23 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
           uri = Uri.parse(_selected_app_screen!.name);
 
           if (uri.pathSegments.length > 1) {
-            int path_segments_index = int.tryParse(uri.pathSegments.last
-                    .substring(uri.pathSegments.last.length - 1)) ??
-                -1;
-
-            print("path: ${uri.path}");
-            print("path_segments_index: $path_segments_index");
+            bool name_contains_number =
+                _selected_app_screen!.name.contains(new RegExp(r'[0-9]'));
 
             String new_path = "";
 
-            if (path_segments_index > 0 &&
-                uri.pathSegments.last
-                        .substring(uri.pathSegments.last.length - 2) ==
-                    "_") {
-              new_path = uri.path.substring(0, uri.path.length - 1) +
-                  (path_segments_index - 1).toString();
+            if (name_contains_number) {
+              remove_screen(_selected_app_screen!.name);
+              _selected_app_screen = null;
             } else {
-              int last_path_segment_index = uri.path.lastIndexOf("/");
-              new_path = uri.path.substring(0, last_path_segment_index);
+              new_path = remove_last_path_segment(uri);
+              AppScreen new_screen = app_screens
+                  .singleWhere((app_screen) => app_screen.name == new_path);
+
+              save_user_session(new_screen.name);
+
+              _selected_app_screen = new_screen;
             }
-
-            AppScreen new_screen = app_screens
-                .singleWhere((app_screen) => app_screen.name == new_path);
-
-            save_user_session(new_screen.name);
-
-            _selected_app_screen = new_screen;
           } else {
             _selected_app_screen = null;
           }
