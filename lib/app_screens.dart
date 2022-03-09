@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'app_screen.dart';
 import 'initial_values_routing.dart';
-import 'remove_last_path_segment.dart';
 import 'save_user_session.dart';
 
 // App Screens variable.

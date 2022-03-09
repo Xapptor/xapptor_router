@@ -4,7 +4,7 @@ class AppScreenRoutePath {
   final String? name;
   final bool is_unknown;
 
-  AppScreenRoutePath.home()
+  AppScreenRoutePath.landing()
       : name = null,
         is_unknown = false;
 
@@ -16,7 +16,7 @@ class AppScreenRoutePath {
       : name = null,
         is_unknown = true;
 
-  bool get is_home_page => name == null;
+  bool get is_landing_page => name == null;
 
   bool get is_details_page => name != null;
 }

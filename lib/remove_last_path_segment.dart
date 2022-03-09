@@ -13,5 +13,6 @@ String remove_last_path_segment(Uri uri) {
     int last_path_segment_index = uri.path.lastIndexOf("/");
     new_path = uri.path.substring(0, last_path_segment_index);
   }
+
   return new_path;
 }

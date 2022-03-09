@@ -30,7 +30,7 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
     }
 
     return _selected_app_screen == null
-        ? AppScreenRoutePath.home()
+        ? AppScreenRoutePath.landing()
         : AppScreenRoutePath.details(_selected_app_screen!.name);
   }
 

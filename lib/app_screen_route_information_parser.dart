@@ -12,9 +12,10 @@ class AppScreenRouteInformationParser
   Future<AppScreenRoutePath> parseRouteInformation(
       RouteInformation route_information) async {
     final uri = Uri.parse(route_information.location!);
+
     // Handle '/'
     if (uri.pathSegments.length == 0) {
-      return AppScreenRoutePath.home();
+      return AppScreenRoutePath.landing();
     }
 
     if (uri.pathSegments.length >= 1) {
@@ -27,7 +28,12 @@ class AppScreenRouteInformationParser
       if (app_screen.name == "") {
         // Second search
 
-        screen_name = remove_last_path_segment(uri).substring(1);
+        screen_name = remove_last_path_segment(uri);
+
+        if (screen_name.length > 0) {
+          screen_name = screen_name.substring(1);
+        }
+
         app_screen = search_screen(screen_name);
 
         if (app_screen.name == "") {
@@ -55,7 +61,7 @@ class AppScreenRouteInformationParser
     if (path.is_unknown) {
       return RouteInformation(location: '/404');
     }
-    if (path.is_home_page) {
+    if (path.is_landing_page) {
       return RouteInformation(location: '/');
     }
     if (path.is_details_page) {

@@ -8,11 +8,13 @@ class AppScreen extends StatefulWidget {
     required this.name,
     required this.child,
     this.path = "",
+    this.check_app_path_timer = 6000,
   });
 
   String name;
   Widget child;
   String path;
+  int check_app_path_timer;
 
   AppScreen clone() {
     return AppScreen(
@@ -27,8 +29,6 @@ class AppScreen extends StatefulWidget {
 
 class _AppScreenState extends State<AppScreen> {
   check_app_path() {
-    //print("check_app_path " + widget.app_path);
-
     if (widget.path.contains("payment_success")) {
       bool is_success = widget.path.contains("true");
       String success_message =
@@ -70,7 +70,9 @@ class _AppScreenState extends State<AppScreen> {
   @override
   void initState() {
     super.initState();
-    check_app_path();
+    Timer(Duration(milliseconds: widget.check_app_path_timer), () {
+      check_app_path();
+    });
   }
 
   @override
