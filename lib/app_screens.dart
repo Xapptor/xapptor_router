@@ -41,7 +41,7 @@ open_screen(String screen_name) {
 
 open_login() => open_screen("login");
 open_register() => open_screen("register");
-open_forgot_password() => open_screen("forgot_password");
+open_restore_password() => open_screen("restore_password");
 
 // Search app screen.
 
