@@ -9,7 +9,7 @@ List<AppScreen> app_screens = [];
 
 // Add new app screen.
 
-add_new_app_screen(AppScreen new_screen) {
+Future add_new_app_screen(AppScreen new_screen) async {
   app_screens.add(new_screen);
 
   List<AppScreen> screens = app_screens
@@ -21,6 +21,7 @@ add_new_app_screen(AppScreen new_screen) {
         .indexWhere((app_screen) => app_screen.name == new_screen.name);
     app_screens.removeAt(duplicate_screen_index);
   }
+  await new Future.delayed(new Duration(milliseconds: 50));
 }
 
 // Remove app screen.
