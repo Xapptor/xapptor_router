@@ -21,7 +21,7 @@ Future add_new_app_screen(AppScreen new_screen) async {
         .indexWhere((app_screen) => app_screen.name == new_screen.name);
     app_screens.removeAt(duplicate_screen_index);
   }
-  await new Future.delayed(new Duration(milliseconds: 50));
+  await new Future.delayed(const Duration(milliseconds: 50));
 }
 
 // Remove app screen.

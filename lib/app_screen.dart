@@ -38,7 +38,7 @@ class _AppScreenState extends State<AppScreen> {
         MaterialBanner(
           content: Text(
             success_message,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
             ),
           ),
@@ -61,7 +61,7 @@ class _AppScreenState extends State<AppScreen> {
         ),
       );
 
-      Timer(Duration(seconds: 2), () {
+      Timer(const Duration(seconds: 2), () {
         ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
       });
     }

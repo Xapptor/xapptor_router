@@ -42,12 +42,12 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
       key: navigatorKey,
       pages: [
         MaterialPage(
-          key: ValueKey('Landing'),
+          key: const ValueKey('Landing'),
           child: landing_screen,
         ),
         if (show_404)
           MaterialPage(
-            key: ValueKey('UnknownPage'),
+            key: const ValueKey('UnknownPage'),
             child: unknown_screen,
           )
         else if (_selected_app_screen != null)

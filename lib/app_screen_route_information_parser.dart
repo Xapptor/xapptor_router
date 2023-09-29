@@ -57,10 +57,10 @@ class AppScreenRouteInformationParser extends RouteInformationParser<AppScreenRo
   @override
   RouteInformation? restoreRouteInformation(AppScreenRoutePath path) {
     if (path.is_unknown) {
-      return RouteInformation(location: '/404');
+      return const RouteInformation(location: '/404');
     }
     if (path.is_landing_page) {
-      return RouteInformation(location: '/');
+      return const RouteInformation(location: '/');
     }
     if (path.is_details_page) {
       return RouteInformation(location: '/${path.name}');
@@ -82,7 +82,7 @@ show_payment_result_alert_dialog(
         ),
         actions: <Widget>[
           TextButton(
-            child: Text("Accept"),
+            child: const Text("Accept"),
             onPressed: () {
               Navigator.of(context).pop();
             },
