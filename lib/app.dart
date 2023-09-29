@@ -15,16 +15,16 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppScreenRouterDelegate _router_delegate = AppScreenRouterDelegate();
-    AppScreenRouteInformationParser _route_information_parser =
+    AppScreenRouterDelegate router_delegate = AppScreenRouterDelegate();
+    AppScreenRouteInformationParser route_information_parser =
         AppScreenRouteInformationParser();
 
     MaterialApp material_app = MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: app_name,
       theme: theme,
-      routerDelegate: _router_delegate,
-      routeInformationParser: _route_information_parser,
+      routerDelegate: router_delegate,
+      routeInformationParser: route_information_parser,
     );
 
     print("Initial route = ${material_app.initialRoute}");
