@@ -24,8 +24,9 @@ save_user_session(String screen_name) async {
       "last_sessions": FieldValue.arrayUnion([xapptor_session.to_json()]),
     });
 
-    if (screen_name == "login" || screen_name == "home")
+    if (screen_name == "login" || screen_name == "home") {
       clean_user_sessions(screen_name, current_user);
+    }
   }
 }
 
