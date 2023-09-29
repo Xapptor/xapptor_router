@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // AppScreen class.
 
 class AppScreen extends StatefulWidget {
-  AppScreen({
+  AppScreen({super.key, 
     required this.name,
     required this.child,
     this.path = "",

@@ -5,7 +5,7 @@ import 'app_screen_router_delegate.dart';
 // App widget.
 
 class App extends StatelessWidget {
-  const App({
+  const App({super.key, 
     required this.app_name,
     required this.theme,
   });
