@@ -70,7 +70,7 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
 
           if (uri.pathSegments.length > 1) {
             bool name_contains_number =
-                _selected_app_screen!.name.contains(new RegExp(r'[0-9]'));
+                _selected_app_screen!.name.contains(RegExp(r'[0-9]'));
 
             String new_path = "";
 

@@ -12,11 +12,11 @@ class AppScreenRouteInformationParser extends RouteInformationParser<AppScreenRo
     final uri = Uri.parse(route_information.location);
 
     // Handle '/'
-    if (uri.pathSegments.length == 0) {
+    if (uri.pathSegments.isEmpty) {
       return AppScreenRoutePath.landing();
     }
 
-    if (uri.pathSegments.length >= 1) {
+    if (uri.pathSegments.isNotEmpty) {
       var screen_name = uri.path.substring(1);
 
       AppScreen app_screen = search_screen(screen_name);
@@ -28,7 +28,7 @@ class AppScreenRouteInformationParser extends RouteInformationParser<AppScreenRo
 
         screen_name = remove_last_path_segment(uri);
 
-        if (screen_name.length > 0) {
+        if (screen_name.isNotEmpty) {
           screen_name = screen_name.substring(1);
         }
 

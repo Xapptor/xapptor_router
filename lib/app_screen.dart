@@ -18,8 +18,8 @@ class AppScreen extends StatefulWidget {
 
   AppScreen clone() {
     return AppScreen(
-      name: this.name,
-      child: this.child,
+      name: name,
+      child: child,
     );
   }
 
