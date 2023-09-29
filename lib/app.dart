@@ -5,7 +5,8 @@ import 'app_screen_router_delegate.dart';
 // App widget.
 
 class App extends StatelessWidget {
-  const App({super.key, 
+  const App({
+    super.key,
     required this.app_name,
     required this.theme,
   });
@@ -16,8 +17,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppScreenRouterDelegate router_delegate = AppScreenRouterDelegate();
-    AppScreenRouteInformationParser route_information_parser =
-        AppScreenRouteInformationParser();
+    AppScreenRouteInformationParser route_information_parser = AppScreenRouteInformationParser();
 
     MaterialApp material_app = MaterialApp.router(
       debugShowCheckedModeBanner: false,
@@ -27,7 +27,7 @@ class App extends StatelessWidget {
       routeInformationParser: route_information_parser,
     );
 
-    print("Initial route = ${material_app.initialRoute}");
+    debugPrint("Initial route = ${material_app.initialRoute}");
     return material_app;
   }
 }

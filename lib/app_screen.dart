@@ -1,10 +1,13 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 
 // AppScreen class.
 
 class AppScreen extends StatefulWidget {
-  AppScreen({super.key, 
+  AppScreen({
+    super.key,
     required this.name,
     required this.child,
     this.path = "",
@@ -24,15 +27,14 @@ class AppScreen extends StatefulWidget {
   }
 
   @override
-  _AppScreenState createState() => _AppScreenState();
+  State<AppScreen> createState() => _AppScreenState();
 }
 
 class _AppScreenState extends State<AppScreen> {
   check_app_path() {
     if (widget.path.contains("payment_success")) {
       bool is_success = widget.path.contains("true");
-      String success_message =
-          is_success ? "Payment Successful" : "Payment Failed";
+      String success_message = is_success ? "Payment Successful" : "Payment Failed";
 
       ScaffoldMessenger.of(context).showMaterialBanner(
         MaterialBanner(
