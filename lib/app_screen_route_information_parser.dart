@@ -6,12 +6,10 @@ import 'app_screens.dart';
 
 // Handle URLs paths changes.
 
-class AppScreenRouteInformationParser
-    extends RouteInformationParser<AppScreenRoutePath> {
+class AppScreenRouteInformationParser extends RouteInformationParser<AppScreenRoutePath> {
   @override
-  Future<AppScreenRoutePath> parseRouteInformation(
-      RouteInformation route_information) async {
-    final uri = Uri.parse(route_information.location!);
+  Future<AppScreenRoutePath> parseRouteInformation(RouteInformation route_information) async {
+    final uri = Uri.parse(route_information.location);
 
     // Handle '/'
     if (uri.pathSegments.length == 0) {

@@ -10,6 +10,7 @@ import 'save_user_session.dart';
 
 class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<AppScreenRoutePath> {
+  @override
   final GlobalKey<NavigatorState> navigatorKey;
 
   AppScreen? _selected_app_screen;
@@ -19,6 +20,7 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
 
   bool first_time = true;
 
+  @override
   AppScreenRoutePath get currentConfiguration {
     if (first_time) {
       first_time = false;
