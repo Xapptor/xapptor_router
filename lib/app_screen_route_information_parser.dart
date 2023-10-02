@@ -8,8 +8,8 @@ import 'app_screens.dart';
 
 class AppScreenRouteInformationParser extends RouteInformationParser<AppScreenRoutePath> {
   @override
-  Future<AppScreenRoutePath> parseRouteInformation(RouteInformation route_information) async {
-    final uri = Uri.parse(route_information.uri.path);
+  Future<AppScreenRoutePath> parseRouteInformation(RouteInformation routeInformation) async {
+    final uri = Uri.parse(routeInformation.uri.path);
 
     // Handle '/'
     if (uri.pathSegments.isEmpty) {
@@ -55,15 +55,15 @@ class AppScreenRouteInformationParser extends RouteInformationParser<AppScreenRo
   }
 
   @override
-  RouteInformation? restoreRouteInformation(AppScreenRoutePath path) {
-    if (path.is_unknown) {
+  RouteInformation? restoreRouteInformation(AppScreenRoutePath configuration) {
+    if (configuration.is_unknown) {
       return RouteInformation(uri: Uri.parse('/404'));
     }
-    if (path.is_landing_page) {
+    if (configuration.is_landing_page) {
       return RouteInformation(uri: Uri.parse('/'));
     }
-    if (path.is_details_page) {
-      return RouteInformation(uri: Uri.parse('/${path.name}'));
+    if (configuration.is_details_page) {
+      return RouteInformation(uri: Uri.parse('/${configuration.name}'));
     }
     return null;
   }
