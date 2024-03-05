@@ -7,9 +7,9 @@ save_user_session(String screen_name) async {
   User? current_user = FirebaseAuth.instance.currentUser;
 
   if (current_user != null) {
-    FirebaseAnalytics.instance.setCurrentScreen(
+    FirebaseAnalytics.instance.logScreenView(
+      screenClass: screen_name,
       screenName: screen_name,
-      screenClassOverride: screen_name,
     );
 
     UserSession xapptor_session = UserSession(
@@ -17,10 +17,7 @@ save_user_session(String screen_name) async {
       date: Timestamp.now(),
     );
 
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(current_user.uid)
-        .update({
+    FirebaseFirestore.instance.collection("users").doc(current_user.uid).update({
       "last_sessions": FieldValue.arrayUnion([xapptor_session.to_json()]),
     });
 
@@ -31,23 +28,16 @@ save_user_session(String screen_name) async {
 }
 
 clean_user_sessions(String screen_name, User current_user) async {
-  DocumentSnapshot doc_snap = await FirebaseFirestore.instance
-      .collection("users")
-      .doc(current_user.uid)
-      .get();
+  DocumentSnapshot doc_snap = await FirebaseFirestore.instance.collection("users").doc(current_user.uid).get();
 
   if (doc_snap.get("last_sessions") != null) {
-    UserSessionList last_sessions =
-        UserSessionList.from_snapshot(doc_snap.get("last_sessions"));
+    UserSessionList last_sessions = UserSessionList.from_snapshot(doc_snap.get("last_sessions"));
 
     if (last_sessions.items.length > 10) {
       int index = last_sessions.items.length - 10;
       last_sessions.items = last_sessions.items.sublist(index);
 
-      FirebaseFirestore.instance
-          .collection("users")
-          .doc(current_user.uid)
-          .update({
+      FirebaseFirestore.instance.collection("users").doc(current_user.uid).update({
         "last_sessions": last_sessions.to_json(),
       });
     }
