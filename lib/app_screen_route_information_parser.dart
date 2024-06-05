@@ -80,7 +80,7 @@ show_payment_result_alert_dialog(
         title: Text(
           payment_success ? "Payment successful" : "Payment failed",
         ),
-        actions: <Widget>[
+        actions: [
           TextButton(
             child: const Text("Accept"),
             onPressed: () {
