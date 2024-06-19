@@ -69,7 +69,9 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
           uri = Uri.parse(_selected_app_screen!.name);
 
           if (uri.pathSegments.length > 1) {
-            bool name_contains_number = _selected_app_screen!.name.contains(RegExp(r'[0-9]'));
+            bool name_contains_number = _selected_app_screen!.name.contains(
+              RegExp(r'[0-9]'),
+            );
 
             String new_path = "";
 
@@ -78,7 +80,10 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
               _selected_app_screen = null;
             } else {
               new_path = remove_last_path_segment(uri);
-              AppScreen new_screen = app_screens.singleWhere((app_screen) => app_screen.name == new_path);
+
+              AppScreen new_screen = app_screens.singleWhere(
+                (app_screen) => app_screen.name == new_path,
+              );
 
               save_user_session(new_screen.name);
 
@@ -110,8 +115,9 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
     }
 
     if (configuration.is_details_page) {
-      AppScreen app_screen =
-          app_screens.singleWhere((current_app_screen) => current_app_screen.name == configuration.name);
+      AppScreen app_screen = app_screens.singleWhere(
+        (current_app_screen) => current_app_screen.name == configuration.name,
+      );
 
       _selected_app_screen = app_screen;
     } else {

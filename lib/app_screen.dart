@@ -3,21 +3,19 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-// AppScreen class.
-
 class AppScreen extends StatefulWidget {
+  String name;
+  String path;
+  int check_app_path_timer;
+  Widget child;
+
   AppScreen({
     super.key,
     required this.name,
-    required this.child,
     this.path = "",
     this.check_app_path_timer = 6000,
+    required this.child,
   });
-
-  String name;
-  Widget child;
-  String path;
-  int check_app_path_timer;
 
   AppScreen clone() {
     return AppScreen(

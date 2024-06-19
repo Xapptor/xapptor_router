@@ -4,10 +4,12 @@ import 'package:xapptor_router/app_screen.dart';
 // Initial values for app router delegate.
 
 Function handle_app_screen_opening = () {};
+
 AppScreen landing_screen = AppScreen(
   name: "landing",
   child: Container(),
 );
+
 AppScreen unknown_screen = AppScreen(
   name: "unknown_screen",
   child: Container(),
