@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:xapptor_router/swipe_gesture_detector/swipe_gesture_detector.dart';
 
 class AppScreen extends StatefulWidget {
   String name;
@@ -77,6 +78,8 @@ class _AppScreenState extends State<AppScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.child;
+    return SwipeGestureDetectorForWeb(
+      child: widget.child,
+    );
   }
 }
