@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xapptor_router/swipe_gesture_detector/check_threshold.dart';
+import 'package:xapptor_router/swipe_gesture_detector/call_threshold_action.dart';
 
 Widget swipe_gesture_detector_icon({
   required IconData icon_data,

@@ -19,6 +19,7 @@ call_threshold_action({
   required ValueNotifier<bool> can_go_back,
   required ValueNotifier<bool> can_go_forward,
 }) {
+  print(arrow_direction);
   switch (arrow_direction) {
     case ArrowDirection.top:
       if (top_swipe_callback != null) {
