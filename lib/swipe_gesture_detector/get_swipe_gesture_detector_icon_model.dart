@@ -27,9 +27,6 @@ SwipeGestureDetectorIconModel get_swipe_gesture_detector_icon_model({
   double? top = center_y;
   double? bottom;
 
-  x_position = x_position.clamp(-container_size, -half_container_size);
-  y_position = y_position.clamp(-container_size, -half_container_size);
-
   if (total_x_scroll.abs() > total_y_scroll.abs()) {
     if (total_x_scroll < 0) {
       //

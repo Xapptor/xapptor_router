@@ -37,6 +37,7 @@ class _SwipeGestureDetectorForWebState extends State<SwipeGestureDetectorForWeb>
   void initState() {
     super.initState();
     enable_swipe_gesture_detector_listener();
+    window_event_listener();
   }
 
   @override
@@ -55,7 +56,7 @@ class _SwipeGestureDetectorForWebState extends State<SwipeGestureDetectorForWeb>
     }
   }
 
-  final Duration _inactivity_duration = const Duration(milliseconds: 600);
+  final Duration _inactivity_duration = const Duration(milliseconds: 500);
 
   _reset_inactivity_timer() {
     _inactivity_timer?.cancel();
@@ -96,6 +97,9 @@ class _SwipeGestureDetectorForWebState extends State<SwipeGestureDetectorForWeb>
 
     double x_position = (total_x_scroll / total_scroll_divisor).abs() - container_size;
     double y_position = (total_y_scroll / total_scroll_divisor).abs() - container_size;
+
+    x_position = x_position.clamp(-container_size, -half_container_size);
+    y_position = y_position.clamp(-container_size, -half_container_size);
 
     bool threshold_reached = x_position == -half_container_size || y_position == -half_container_size;
 

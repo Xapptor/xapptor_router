@@ -2,6 +2,7 @@
 
 import 'dart:html' as html;
 import 'package:flutter/foundation.dart';
+import 'package:xapptor_router/swipe_gesture_detector/enable_swipe_gesture_detector_listener.dart';
 
 enum ArrowDirection {
   top,
@@ -19,7 +20,6 @@ call_threshold_action({
   required ValueNotifier<bool> can_go_back,
   required ValueNotifier<bool> can_go_forward,
 }) {
-  print(arrow_direction);
   switch (arrow_direction) {
     case ArrowDirection.top:
       if (top_swipe_callback != null) {
@@ -66,4 +66,10 @@ bool _can_go_back() {
 bool _can_go_forward() {
   html.window.history.forward();
   return false;
+}
+
+window_event_listener() {
+  html.window.onPopState.listen((event) {
+    enable_swipe_gesture_detector_listener();
+  });
 }

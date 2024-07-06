@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xapptor_router/swipe_gesture_detector/enable_swipe_gesture_detector_listener.dart';
 import 'app_screen.dart';
 import 'app_screen_route_path.dart';
 import 'app_screens.dart';
@@ -63,6 +64,8 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
         if (!route.didPop(result)) {
           return false;
         }
+
+        enable_swipe_gesture_detector_listener();
 
         Uri uri = Uri();
         if (_selected_app_screen != null) {

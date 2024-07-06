@@ -25,8 +25,6 @@ Future add_new_app_screen(AppScreen new_screen) async {
 // Remove app screen.
 
 remove_screen(String app_screen_name) {
-  enable_swipe_gesture_detector_listener();
-
   app_screens.removeWhere((app_screen) => app_screen.name == app_screen_name);
 }
 
