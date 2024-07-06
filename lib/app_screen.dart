@@ -9,6 +9,7 @@ class AppScreen extends StatefulWidget {
   String path;
   int check_app_path_timer;
   Widget child;
+  bool enable_swipe_gesture_detector_for_web;
 
   AppScreen({
     super.key,
@@ -16,6 +17,7 @@ class AppScreen extends StatefulWidget {
     this.path = "",
     this.check_app_path_timer = 6000,
     required this.child,
+    this.enable_swipe_gesture_detector_for_web = true,
   });
 
   AppScreen clone() {
@@ -78,8 +80,12 @@ class _AppScreenState extends State<AppScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SwipeGestureDetectorForWeb(
-      child: widget.child,
-    );
+    if (MediaQuery.of(context).orientation != Orientation.portrait && widget.enable_swipe_gesture_detector_for_web) {
+      return SwipeGestureDetectorForWeb(
+        child: widget.child,
+      );
+    } else {
+      return widget.child;
+    }
   }
 }
