@@ -17,7 +17,7 @@ class AppScreen extends StatefulWidget {
     this.path = "",
     this.check_app_path_timer = 6000,
     required this.child,
-    this.enable_swipe_gesture_detector_for_web = true,
+    this.enable_swipe_gesture_detector_for_web = false,
   });
 
   AppScreen clone() {
