@@ -60,7 +60,12 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
 
       // When the back screen is called.
 
-      onDidRemovePage: (page) {
+      // TODO: Resolve this deprecated
+      onPopPage: (route, result) {
+        if (!route.didPop(result)) {
+          return false;
+        }
+
         enable_swipe_gesture_detector_listener();
 
         Uri uri = Uri();
@@ -97,6 +102,8 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
 
         show_404 = false;
         notifyListeners();
+
+        return true;
       },
     );
   }
