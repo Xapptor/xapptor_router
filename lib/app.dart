@@ -37,17 +37,17 @@ class _AppState extends State<App> {
     setState(() {});
   }
 
-  _check_theme_mode() async {
+  Future<String> _check_theme_mode() async {
     prefs = await SharedPreferences.getInstance();
-    theme_mode = (prefs!.getString("theme_mode") ?? "light") == "light" ? ThemeMode.light : ThemeMode.dark;
-    setState(() {});
+    String prefs_theme_mode = prefs!.getString("theme_mode") ?? "light";
+    theme_mode = prefs_theme_mode == "light" ? ThemeMode.light : ThemeMode.dark;
+    return prefs_theme_mode;
   }
 
   @override
   void initState() {
     toggle_app_theme = _toggle_theme;
     super.initState();
-    _check_theme_mode();
   }
 
   @override
@@ -66,6 +66,25 @@ class _AppState extends State<App> {
     );
 
     debugPrint("Initial route = ${material_app.initialRoute}");
-    return material_app;
+
+    return FutureBuilder<String>(
+      future: _check_theme_mode(),
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return const CircularProgressIndicator();
+          case ConnectionState.done:
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else if (snapshot.hasData) {
+              return material_app;
+            } else {
+              return const Text('No data');
+            }
+          default:
+            return const Text('No data');
+        }
+      },
+    );
   }
 }

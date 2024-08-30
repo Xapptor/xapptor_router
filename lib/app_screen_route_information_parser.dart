@@ -37,6 +37,7 @@ class AppScreenRouteInformationParser extends RouteInformationParser<AppScreenRo
         if (app_screen.name == "") {
           return AppScreenRoutePath.unknown();
         } else {
+          // Handle path routes with IDs for example: 'resumes/NZFqgv9G15W5Ea99PQIryroCU893_en'
           AppScreen new_app_screen = app_screen.clone();
 
           new_app_screen.name = uri.path.substring(1);
