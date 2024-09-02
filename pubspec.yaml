@@ -1,6 +1,7 @@
 name: xapptor_router
 description: Router Module for Web and Mobile Navigation.
 repository: https://github.com/Xapptor/xapptor_router
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 0.0.2
 
 environment:
@@ -16,6 +17,9 @@ dependencies:
   
   url_strategy: ^0.2.0
   shared_preferences: ^2.2.3
+
+  xapptor_db:
+    path: ../xapptor_db
 
 dev_dependencies:
   flutter_test:
