@@ -7,12 +7,12 @@ Function handle_app_screen_opening = () {};
 
 AppScreen landing_screen = AppScreen(
   name: "landing",
-  child: Container(),
+  child: const SizedBox(),
 );
 
 AppScreen unknown_screen = AppScreen(
   name: "unknown_screen",
-  child: Container(),
+  child: const SizedBox(),
 );
 
 BuildMode current_build_mode = BuildMode.develop;

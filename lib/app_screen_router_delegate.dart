@@ -54,7 +54,7 @@ class AppScreenRouterDelegate extends RouterDelegate<AppScreenRoutePath>
         else if (_selected_app_screen != null)
           MaterialPage(
             key: ValueKey(_selected_app_screen!.name),
-            child: _selected_app_screen ?? Container(),
+            child: _selected_app_screen ?? const SizedBox(),
           )
       ],
 

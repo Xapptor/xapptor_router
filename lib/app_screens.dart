@@ -46,10 +46,13 @@ open_restore_password() => open_screen("restore_password");
 // Search app screen.
 
 AppScreen search_screen(String screen_name) {
-  return app_screens.singleWhere((current_app_screen) => current_app_screen.name == screen_name, orElse: () {
-    return AppScreen(
-      name: "",
-      child: Container(),
-    );
-  });
+  return app_screens.singleWhere(
+    (current_app_screen) => current_app_screen.name == screen_name,
+    orElse: () {
+      return AppScreen(
+        name: "",
+        child: const SizedBox(),
+      );
+    },
+  );
 }
