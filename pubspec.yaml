@@ -11,12 +11,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  firebase_auth: ^5.2.0
-  cloud_firestore: ^5.3.0
-  firebase_analytics: ^11.3.0
+  firebase_auth: ^5.5.3
+  cloud_firestore: ^5.6.7
+  firebase_analytics: ^11.4.5
   
-  url_strategy: ^0.2.0
-  shared_preferences: ^2.2.3
+  url_strategy: ^0.3.0
+  shared_preferences: ^2.5.3
 
   xapptor_db:
     path: ../xapptor_db

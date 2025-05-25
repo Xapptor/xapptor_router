@@ -13,7 +13,7 @@ Widget swipe_gesture_detector_icon({
     height: container_size,
     decoration: BoxDecoration(
       shape: BoxShape.circle,
-      color: Colors.black.withOpacity(0.5),
+      color: Colors.black.withValues(alpha: 0.5),
     ),
     child: Flex(
       direction: arrow_direction == ArrowDirection.top || arrow_direction == ArrowDirection.bottom
