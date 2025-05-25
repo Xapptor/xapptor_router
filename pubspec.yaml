@@ -17,6 +17,7 @@ dependencies:
   
   url_strategy: ^0.3.0
   shared_preferences: ^2.5.3
+  web: ^1.1.1
 
   xapptor_db:
     path: ../xapptor_db

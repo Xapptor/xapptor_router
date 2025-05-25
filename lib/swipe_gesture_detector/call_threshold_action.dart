@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 
-import 'dart:html' as html;
+import 'package:web/web.dart' as web;
 import 'package:flutter/foundation.dart';
 import 'package:xapptor_router/swipe_gesture_detector/enable_swipe_gesture_detector_listener.dart';
 
@@ -55,21 +55,21 @@ call_threshold_action({
 }
 
 _reload() {
-  html.window.location.reload();
+  web.window.location.reload();
 }
 
 bool _can_go_back() {
-  html.window.history.back();
+  web.window.history.back();
   return false;
 }
 
 bool _can_go_forward() {
-  html.window.history.forward();
+  web.window.history.forward();
   return false;
 }
 
 window_event_listener() {
-  html.window.onPopState.listen((event) {
+  web.window.onPopState.listen((event) {
     enable_swipe_gesture_detector_listener();
   });
 }
