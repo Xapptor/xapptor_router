@@ -27,8 +27,25 @@ class App extends StatefulWidget {
   State<App> createState() => _AppState();
 }
 
+// Singleton router instances - survive hot reload at module level
+AppScreenRouterDelegate? _router_delegate_instance;
+AppScreenRouteInformationParser? _route_information_parser_instance;
+
+AppScreenRouterDelegate get _router_delegate {
+  _router_delegate_instance ??= AppScreenRouterDelegate();
+  return _router_delegate_instance!;
+}
+
+AppScreenRouteInformationParser get _route_information_parser {
+  _route_information_parser_instance ??= AppScreenRouteInformationParser();
+  return _route_information_parser_instance!;
+}
+
 class _AppState extends State<App> {
   SharedPreferences? prefs;
+
+  // Cache the Future to prevent re-execution on every build
+  Future<String>? _theme_mode_future;
 
   void _toggle_theme({
     required ThemeMode new_theme_mode,
@@ -46,44 +63,30 @@ class _AppState extends State<App> {
 
   @override
   void initState() {
-    toggle_app_theme = _toggle_theme;
     super.initState();
+    toggle_app_theme = _toggle_theme;
+
+    // Cache the Future so it doesn't re-execute on every build (hot reload)
+    _theme_mode_future = _check_theme_mode();
   }
 
   @override
   Widget build(BuildContext context) {
-    AppScreenRouterDelegate router_delegate = AppScreenRouterDelegate();
-    AppScreenRouteInformationParser route_information_parser = AppScreenRouteInformationParser();
-
-    MaterialApp material_app = MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: widget.app_name,
-      theme: widget.theme,
-      darkTheme: widget.dark_theme,
-      themeMode: theme_mode,
-      routerDelegate: router_delegate,
-      routeInformationParser: route_information_parser,
-    );
-
-    debugPrint("Initial route = ${material_app.initialRoute}");
-
+    // Use the cached Future (created in initState) to prevent re-triggering on hot reload
     return FutureBuilder<String>(
-      future: _check_theme_mode(),
+      future: _theme_mode_future,
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.waiting:
-            return const CircularProgressIndicator();
-          case ConnectionState.done:
-            if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else if (snapshot.hasData) {
-              return material_app;
-            } else {
-              return const Text('No data');
-            }
-          default:
-            return const Text('No data');
-        }
+        // Always show MaterialApp.router - don't show loading indicator
+        // This prevents the router from being unmounted/remounted on hot reload
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: widget.app_name,
+          theme: widget.theme,
+          darkTheme: widget.dark_theme,
+          themeMode: theme_mode,
+          routerDelegate: _router_delegate,
+          routeInformationParser: _route_information_parser,
+        );
       },
     );
   }
