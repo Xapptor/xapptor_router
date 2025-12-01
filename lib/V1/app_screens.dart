@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:xapptor_router/swipe_gesture_detector/enable_swipe_gesture_detector_listener.dart';
-import 'package:xapptor_router/V2/app_screens_v2.dart' as v2;
 import 'app_screen.dart';
 import 'initial_values_routing.dart';
 import 'save_user_session.dart';
@@ -30,19 +29,10 @@ remove_screen(String app_screen_name) {
 }
 
 // Open app screen.
-// This function bridges V1 calls to V2 when V2 router is being used.
 
 open_screen(String screen_name) {
   enable_swipe_gesture_detector_listener();
 
-  // Check if V2 router is being used (V2 has screens registered)
-  if (v2.app_screens_v2.isNotEmpty) {
-    // Forward to V2 router
-    v2.open_screen_v2(screen_name);
-    return;
-  }
-
-  // V1 behavior
   save_user_session(screen_name);
 
   int screen_index = app_screens.indexWhere((app_screen) => app_screen.name == screen_name);
