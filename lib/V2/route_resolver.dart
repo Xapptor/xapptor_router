@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:xapptor_router/V2/app_screen_v2.dart';
 import 'package:xapptor_router/V2/app_screens_v2.dart';
 import 'package:xapptor_router/V2/route_resolution.dart';
-import 'package:xapptor_router/remove_last_path_segment.dart';
 
 /// Callback type for route resolution errors.
 ///
@@ -119,9 +118,8 @@ class RouteResolverV2 {
     }
 
     // Try exact match first, then base route match
-    final resolution = _try_exact_match(normalized) ??
-        _try_base_route_match(normalized) ??
-        RouteResolutionV2.notFound(route_name);
+    final resolution =
+        _try_exact_match(normalized) ?? _try_base_route_match(normalized) ?? RouteResolutionV2.notFound(route_name);
 
     if (resolution.is_valid) {
       _handle_resolved(resolution, on_resolved);
@@ -184,8 +182,7 @@ class RouteResolverV2 {
   }
 
   /// Tries matching with multiple base segments (e.g., "home/courses/123").
-  static RouteResolutionV2? _try_multi_segment_base_match(
-      Uri uri, String normalized) {
+  static RouteResolutionV2? _try_multi_segment_base_match(Uri uri, String normalized) {
     // Try progressively longer base routes
     for (int i = uri.pathSegments.length - 1; i > 0; i--) {
       final base_segments = uri.pathSegments.sublist(0, i);
@@ -211,8 +208,7 @@ class RouteResolverV2 {
   }
 
   /// Creates a dynamic screen clone and registers it.
-  static AppScreenV2 _create_dynamic_screen(
-      AppScreenV2 base, String new_name) {
+  static AppScreenV2 _create_dynamic_screen(AppScreenV2 base, String new_name) {
     final cloned = base.clone_with_path(new_name);
     add_new_app_screen_v2(cloned);
     return cloned;

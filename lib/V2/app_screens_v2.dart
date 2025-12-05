@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
 import 'package:xapptor_router/swipe_gesture_detector/enable_swipe_gesture_detector_listener.dart';
 import 'package:xapptor_router/V2/app_screen_v2.dart';
 import 'package:xapptor_router/V2/initial_values_routing_v2.dart';
@@ -53,13 +52,10 @@ Future<void> add_new_app_screen_v2(AppScreenV2 new_screen) async {
   app_screens_v2.add(new_screen);
 
   // Remove duplicates (keep the newer one)
-  List<AppScreenV2> screens = app_screens_v2
-      .where((app_screen) => app_screen.name == new_screen.name)
-      .toList();
+  List<AppScreenV2> screens = app_screens_v2.where((app_screen) => app_screen.name == new_screen.name).toList();
 
   if (screens.length > 1) {
-    int duplicate_screen_index =
-        app_screens_v2.indexWhere((app_screen) => app_screen.name == new_screen.name);
+    int duplicate_screen_index = app_screens_v2.indexWhere((app_screen) => app_screen.name == new_screen.name);
     app_screens_v2.removeAt(duplicate_screen_index);
   }
 

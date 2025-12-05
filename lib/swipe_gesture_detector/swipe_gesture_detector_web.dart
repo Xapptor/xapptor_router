@@ -77,7 +77,7 @@ class _SwipeGestureDetectorForWebState extends State<SwipeGestureDetectorForWeb>
     });
   }
 
-  final scrollController = ScrollController();
+  final scroll_controller = ScrollController();
 
   ValueNotifier<ArrowDirection> arrow_direction = ValueNotifier<ArrowDirection>(ArrowDirection.left);
 

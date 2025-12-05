@@ -98,9 +98,9 @@ class AppScreenV2 extends StatefulWidget {
     return AppScreenV2(
       name: new_name,
       path: "/$new_name",
-      child: child,
       check_app_path_timer: check_app_path_timer,
       enable_swipe_gesture_detector_for_web: enable_swipe_gesture_detector_for_web,
+      child: child,
     );
   }
 
@@ -173,8 +173,7 @@ class _AppScreenV2State extends State<AppScreenV2> {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation != Orientation.portrait &&
-        widget.enable_swipe_gesture_detector_for_web) {
+    if (MediaQuery.of(context).orientation != Orientation.portrait && widget.enable_swipe_gesture_detector_for_web) {
       return SwipeGestureDetectorForWeb(
         child: widget.child,
       );
