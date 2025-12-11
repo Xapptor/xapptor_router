@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:xapptor_router/swipe_gesture_detector/enable_swipe_gesture_detector_listener.dart';
-import 'package:xapptor_router/V2/app_screen_v2.dart';
 import 'package:xapptor_router/V2/app_screen_route_path_v2.dart';
 import 'package:xapptor_router/V2/app_screens_v2.dart';
 import 'package:xapptor_router/V2/initial_values_routing_v2.dart';
 import 'package:xapptor_router/V2/route_resolver.dart';
 import 'package:xapptor_router/V2/save_user_session_v2.dart';
-import 'package:xapptor_router/remove_last_path_segment.dart';
 
 /// Router delegate for xapptor_router V2.
 ///
@@ -216,7 +214,12 @@ class AppScreenRouterDelegateV2 extends RouterDelegate<AppScreenRoutePathV2>
   /// For a route like "home/settings/profile", navigates to "home/settings".
   /// If the parent route doesn't exist, falls back to landing.
   void _navigate_to_parent_route(Uri uri) {
-    String new_path = remove_last_path_segment(uri);
+    // Remove last path segment inline
+    final segments = uri.pathSegments.toList();
+    if (segments.isNotEmpty) {
+      segments.removeLast();
+    }
+    String new_path = segments.join('/');
 
     if (new_path.startsWith('/')) {
       new_path = new_path.substring(1);

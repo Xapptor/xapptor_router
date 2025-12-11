@@ -5,6 +5,8 @@ import 'package:xapptor_router/V2/route_resolution.dart';
 import 'package:xapptor_router/V2/route_resolver.dart';
 import 'package:xapptor_router/V2/save_user_session_v2.dart';
 
+export 'package:xapptor_router/V2/app_screen_v2.dart';
+
 /// Global list of registered app screens.
 ///
 /// Screens are added via [add_new_app_screen_v2] and accessed during

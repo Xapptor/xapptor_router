@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:xapptor_router/V2/app_screen_v2.dart';
 import 'package:xapptor_router/V2/app_screens_v2.dart';
 import 'package:xapptor_router/V2/route_resolution.dart';
 
