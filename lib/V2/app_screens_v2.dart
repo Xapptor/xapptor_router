@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:xapptor_router/swipe_gesture_detector/enable_swipe_gesture_detector_listener.dart';
 import 'package:xapptor_router/V2/app_screen_v2.dart';
 import 'package:xapptor_router/V2/initial_values_routing_v2.dart';
@@ -152,17 +151,10 @@ RouteResolutionV2 open_screen_v2(
   if (!resolution.is_valid) {
     // Try fallback route if provided
     if (fallback_route != null) {
-      if (kDebugMode) {
-        debugPrint('[open_screen_v2] Route not found: "$screen_name", '
-            'falling back to "$fallback_route"');
-      }
       return open_screen_v2(fallback_route);
     }
 
     // Route not found and no fallback
-    if (kDebugMode) {
-      debugPrint('[open_screen_v2] Route not found: "$screen_name"');
-    }
     return resolution;
   }
 
