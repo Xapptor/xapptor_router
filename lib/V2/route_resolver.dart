@@ -207,10 +207,26 @@ class RouteResolverV2 {
     return null;
   }
 
-  /// Creates a dynamic screen clone and registers it.
+  /// Creates a dynamic screen clone and registers it synchronously.
+  ///
+  /// NOTE: This method adds the screen synchronously to app_screens_v2
+  /// before returning, ensuring the index lookup in resolve() works correctly.
+  /// The add_new_app_screen_v2() function's async delay is for initial app
+  /// startup, not for dynamic screen creation during navigation.
   static AppScreenV2 _create_dynamic_screen(AppScreenV2 base, String new_name) {
     final cloned = base.clone_with_path(new_name);
-    add_new_app_screen_v2(cloned);
+
+    // Add synchronously to ensure the screen is in the list when we return.
+    // This is critical for the index lookup that follows.
+    app_screens_v2.add(cloned);
+
+    // Remove duplicates (keep the newer one) - same logic as add_new_app_screen_v2
+    final screens = app_screens_v2.where((s) => s.name == new_name).toList();
+    if (screens.length > 1) {
+      final duplicate_index = app_screens_v2.indexWhere((s) => s.name == new_name);
+      app_screens_v2.removeAt(duplicate_index);
+    }
+
     return cloned;
   }
 

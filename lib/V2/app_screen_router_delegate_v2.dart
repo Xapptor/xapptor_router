@@ -52,6 +52,17 @@ class AppScreenRouterDelegateV2 extends RouterDelegate<AppScreenRoutePathV2>
   bool show_404 = false;
   bool _first_time = true;
 
+  /// Flag to prevent _on_did_remove_page from processing removals during
+  /// programmatic navigation. When navigating from screen A to screen B,
+  /// screen A is "removed" which triggers _on_did_remove_page. Without this
+  /// guard, the callback would reset _selected_app_screen to null, causing
+  /// the navigator to fall back to landing instead of showing screen B.
+  bool _is_navigating = false;
+
+  /// Stores the page key being navigated away from, so we can identify
+  /// when the removal callback for that specific page fires.
+  String? _navigating_from_page_key;
+
   /// Creates a new router delegate.
   AppScreenRouterDelegateV2() : navigatorKey = GlobalKey<NavigatorState>();
 
@@ -126,6 +137,25 @@ class AppScreenRouterDelegateV2 extends RouterDelegate<AppScreenRoutePathV2>
   /// 2. For nested routes (e.g., "home/settings/profile"): Go to parent route
   /// 3. For simple routes (e.g., "login"): Go to landing
   void _on_did_remove_page(Page<Object?> page) {
+    final page_key = page.key.toString();
+
+    // Check if this removal is for the page we're navigating away from.
+    // If so, this is expected and we should skip processing.
+    if (_is_navigating && _navigating_from_page_key != null) {
+      if (page_key.contains(_navigating_from_page_key!)) {
+        // Reset the navigation guard now that we've handled the expected removal
+        _is_navigating = false;
+        _navigating_from_page_key = null;
+        return;
+      }
+    }
+
+    // Also skip if _is_navigating is true but page key doesn't match
+    // (could be a delayed callback)
+    if (_is_navigating) {
+      return;
+    }
+
     enable_swipe_gesture_detector_listener();
 
     _update_selected_screen_on_pop();
@@ -238,6 +268,14 @@ class AppScreenRouterDelegateV2 extends RouterDelegate<AppScreenRoutePathV2>
   /// Called by [open_screen_v2] to trigger navigation.
   void _handle_app_screen_opening(int index) {
     if (index >= 0 && index < app_screens_v2.length) {
+      // Set navigation guard to prevent _on_did_remove_page from processing
+      // the removal of the current screen during this navigation.
+      _is_navigating = true;
+
+      // Store the page key we're navigating from so we can identify
+      // the removal callback for this specific page.
+      _navigating_from_page_key = _selected_app_screen?.name;
+
       _selected_app_screen = app_screens_v2[index];
       show_404 = false;
       notifyListeners();
